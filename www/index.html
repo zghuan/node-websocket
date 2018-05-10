@@ -1,0 +1,429 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"> 
+<meta content="yes" name="apple-mobile-web-app-capable"> 
+<meta content="yes" name="apple-touch-fullscreen"> 
+<meta content="telephone=no,email=no" name="format-detection"> 
+<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+<script src="js/flexible.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="styles/main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <title>chat-self</title>
+
+<style type="text/css">
+*{padding: 0;margin:0; box-sizing: border-box; max-height: 100000px; box-sizing: border-box;}
+body{margin: 0;padding: 0;font-family: "Microsoft","微软雅黑";box-sizing: border-box;}
+html,div,img{margin: 0;padding: 0;}
+a,ul,li,span,p{ display: block; }
+a{text-decoration: none; -webkit-touch-callout:none}
+ul li{ list-style: none;}
+.box{min-width: 100%;position: relative; font-size: 12px;}
+[data-dpr="2"] .box{font-size:24px;}
+[data-dpr="3"] .box{font-size:36px;}
+#top{ height:0.53333rem;background: rgb(49,123,174);}
+#middle{ height: 1.173333rem;background: rgb(66,148,214);position: relative;}
+#middle .name{ text-align: center;line-height: 1.173333rem;color: white;font-size: 16px;font-family: "Microsoft","微软雅黑";}
+[data-dpr="2"] #middle .name{font-size:32px;}
+[data-dpr="3"] #middle .name{font-size:48px;}
+#middle .md-right{ width: 0.6667rem;height:0.6667rem;position: absolute;top: 0.253333rem;right: 0.32rem;}
+#middle .md-left{ width: 0.6667rem;height:0.6667rem;position: absolute;top: 0.253333rem;left: 0.15rem;}
+img{width: 100%; height: 100%; }
+
+.bottom {position: fixed;z-index: 50;bottom: 0;left:0;width: 100%;height: 1.306667rem;
+  display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display:flex;
+  border-top: 0.01rem solid #ccc;background:#e0e0e0; }
+
+.bottom-lr a{ width: 1rem;height:1rem; margin-top: 0.16rem; text-decoration: none;}
+.bottom-lr .right{ margin-right: 0.32rem; }
+.bottom-lr .left{ margin-left: 0.32rem;}
+#sended{ width: 1.2rem;height: 1rem; border:1px solid rgba(66,148,214,0.8);display: none;background: rgba(66,148,214,0.7); font-size: 16px; color: white; border-radius: 0.2rem;}
+[data-dpr="2"] #sended{font-size:32px;}
+[data-dpr="3"] #sended{font-size:48px;}
+
+.bottom .send{ -webkit-flex: 1; -ms-flex: 1; flex: 1;  display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display:flex;justify-content: center;box-pack:center;}
+.send .send-text{ width:90%; height: 1.173333rem; border-color: #2196f3;font-size:16px ;
+  font-family:"Microsoft","微软雅黑"; outline: none; align-self: center;display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display:flex;text-indent: 0.2rem;}
+[data-dpr="2"] .send .send-text{font-size:32px;}
+[data-dpr="3"] .send .send-text{font-size:48px;}
+#bottom-top{ height: 5.2rem; width: 100%; border: 0.01rem solid #bcbcbc;background: #e3e3e3;  position: fixed;
+  bottom: 1.3067rem;box-sizing: border-box; z-index: 50;left: 0;display: none;}
+#bottom-top .photo{ width:1.52rem; height: 2.1rem; float: left; margin:0.25rem 0.48rem;}
+#bottom-top li{ width:1.52rem; height: 1.52rem;  }
+#bottom-top span{ height:0.373333rem;font: 10px ;color: #4e4e4e; font-weight: bold;margin-top: 0.2rem; text-align: center; overflow: hidden;}
+[data-dpr="2"] #bottom-top span{font-size: 20px;}
+[data-dpr="3"] #bottom-top span{ font-size: 30px; }
+
+#testBtn{width: 90%;height: 1.173333rem;border-radius:0.586667rem;line-height:1.173333rem;font-size:16px ;color:#4294d6;outline:none;}
+[data-dpr="2"] #testBtn{font-size:32px;}
+[data-dpr="3"] #testBtn{font-size:48px;}
+
+.flex{position: fixed;top: 0;left: 0;width:100%;height: auto; z-index: 50;}
+.chat{top: 1.70666rem;position: relative;margin-bottom: 1.406667rem;}
+
+ .high{border-radius: 0.13333rem;padding: 0.24rem;margin: 0.3rem 1.3333rem 0 0rem;font-weight: bold;text-align: center;color :white;position: relative;cursor: pointer;box-shadow: -0.026667rem -0.026667rem 0.133333rem white;} 
+ .high:hover{box-shadow: 0 0 0.26667rem white;}
+  .history{width: 10rem;height: 0.66667rem;opacity:0.5;background: black;text-align: center;line-height: 0.6667rem;cursor: pointer;color: white;font-family: bold;position: fixed;display: none;}
+  .history:hover{color: orange;}
+ .cry{height:0; width:0; border-width:0.36rem; border-style:solid; border-color: transparent transparent transparent rgb(66,148,214); position: absolute; right: -0.53333rem; top: 0.026667rem;}
+#image1{position: absolute;right: -1.2rem;top: -0.1333rem;margin-top: 0.13333rem;width: 1rem;height: 1rem;}
+#image1:hover{box-shadow: 0 0 0.13333rem white;}
+
+.low{border-radius: 0.13333rem;padding: 0.24rem;margin: 0.3rem 1.3333rem 0 1.2rem;font-weight: bold;text-align: center;color:white ;position: relative;cursor: pointer;box-shadow: -0.026667rem -0.026667rem 0.133333rem white;} 
+ .low:hover{box-shadow: 0 0 0.26667rem white;}
+  
+ .laugh{height:0; width:0; border-width:0.36rem; border-style:solid; border-color:  transparent rgb(79,129,86) transparent transparent; position: absolute; left: -0.53333rem; top: 0.026667rem;}
+#image2{position: absolute;left: -1.2rem;top: -0.1333rem;margin-top: 0.13333rem;width: 1rem;height: 1rem;}
+#image2:hover{box-shadow: 0 0 0.13333rem white;}
+
+.voide{background: black;width: 4rem;height: 4rem; position: absolute;top: 50%;left: 50%;margin: -2rem;opacity: 0.8;z-index: 100;
+   border-radius: 0.1333rem;display: none;}
+
+.imgss{width:1.01333rem;height: 1.706667rem;margin-top:0.9333rem;margin-left:0.6667rem;}
+
+.voide span{color:white ;bottom:0;text-align: center;font-size:12px;position: relative;}
+[data-dpr="2"].voide span{font-size:24px;}
+[data-dpr="3"].voide span{font-size:48px;}
+.hande{display: none;}
+#div1{width: 0.37333rem;height: 0.26667rem; background: white;position: absolute;top:2.26667rem;right: 1.026667rem;}
+#div2{width: 0.6rem;height:0.26667rem; background: white;position: absolute;top:1.8667rem;right:0.906667rem;}
+#div3{width: 0.86667rem;height:0.26667rem; background: white;position: absolute;top:1.4667rem;right: 0.76rem;}
+#div4{width: 1.1333rem;height:0.26667rem; background: white;position: absolute;top:1.0667rem;right: 0.626667rem;}
+
+.delete{width: 100px;height: 200px;background: black;color: white;opacity: 0.8;text-align: center;
+  right:140px;top:70px;position: absolute;z-index: 80;display: none;}
+.delete li{padding: 8px;}
+
+</style>
+</head>
+<body>
+<div class="flex">
+<div class="box">
+    <div id="top"></div>
+    <div id="middle">
+        <div class="md-left">
+            <a href="#"  onClick="javascript:window.location.href='one_level.html'"><img src="images/chat/返回.svg" /></a>
+        </div>
+        <div class="md-right">
+          <span id="status" style="display:none;"></span>
+            <!--<button style="width:0.6667rem;height: 0.6667rem;" id="sendx" class="sendx" onclick="get_data_ajax()">ajax</button> 
+           <button style="width:0.6667rem;height: 0.6667rem;" id="send2" class="send2">发送</button>-->
+             <img src="images/chat/个人.svg" />
+        </div>
+    	<span class="name" id="id_name">聊天室</span>
+    </div>
+</div> 
+</div> 
+    <div class="voide" id="voide">
+      <div class="boxs">
+        <div class="hande" id="div1"></div>
+        <div class="hande" id="div2"></div>
+        <div class="hande" id="div3"></div>
+        <div class="hande" id="div4"></div>
+      </div>
+      <img src="images/void/麦克风.svg" alt="" class="imgss">
+      <span>手指上滑,取消发送</span>
+      
+    </div>
+
+	<div id="chat" class="chat">
+     <ul class="delete" id="delete">
+       <li class="deles" id="copy">复制</li>
+       <li class="deles" id="sed">发送</li>
+       <li class="deles" id="remove">删除</li>
+       <li class="deles" id="prevs">撤回</li>
+     </ul>
+    <div id="historyMsg">
+    </div>
+  </div>
+   <input id="clearBtn" type="button" value="clear" style="display:none" title="clear screen" />
+	
+	<div id="bottom-top">
+  <ul>
+    <a class="photo" href="#"><li><img src="images/function/照片.svg" /></li><span>照片</span></a>
+    <a class="photo" href="#"><li><img src="images/function/文件.svg" /></li><span>文件传输</span></a>
+    <a class="photo" href="#"><li><img src="images/function/視頻.svg" /></li><span>视频聊天</span></a>
+    <a class="photo" href="#"><li><img src="images/function/拍照.svg" /></li><span>拍摄</span></a>
+    <a class="photo" href="#"><li><img src="images/function/截图.svg" /></li><span>截图</span></a>
+    <a class="photo" href="#"><li><img src="images/function/私密聊天.svg" /></li><span>私密聊天</span></a>
+  </ul>
+</div>
+<input id="colorStyle" type="color" placeHolder='#000' style="display:none" title="font color" />
+                    <input id="emoji" type="button" value="emoji" style="display:none" title="emoji" />
+<label for="sendImage" class="imageLable" style="display:none">
+                        <input type="button" value="image"  />
+                        <input id="sendImage" type="file" value="image"/>
+</label>
+<div class="bottom">
+    <div class="bottom-lr">
+        <a class="left"><img src="images/chat/麦克风.svg" /></a>
+    </div>
+    <div class="send">
+        <input type="text" name="send-text" class="send-text" id="send_text1" placeholder="请输入内容" style='border-left:0;border-top:0;border-right:0;' oninput="zgh()" id="messageInput">
+    </div>
+    <div class="bottom-lr">
+        <a class="right">
+          <img src="images/chat/function.svg" id="img1" />
+          <button id="sended" id="sendBtn">发送</button>
+        </a>
+    </div> 
+   
+</div>
+ <div id="emojiWrapper">
+                </div>
+ <div id="loginWrapper">
+            <p id="info">正在连接服务器...</p>
+            <div id="nickWrapper">
+                <input type="text" placeHolder="聊天昵称" id="nicknameInput" />
+                <input type="button" value="OK" id="loginBtn" />
+            </div>
+      </div>
+<script src="/socket.io/socket.io.js"></script>
+        <script src="scripts/hichat.js"></script>
+        <script>
+        /**REMOVE ME IF YOU CANT ACCESS GOOGLE SERVICE**/
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-46794744-7', 'hichat.herokuapp.com');
+          ga('send', 'pageview');
+        /**REMOVE END**/
+//init();
+
+//菜单栏滑动部分(功能键显示隐藏)
+ $("#img1").click(function(){
+                    $("#bottom-top").slideToggle("fast");
+                              }); 
+
+
+var text1 = document.getElementById("send_text1"); //获取文本框
+var button1 = document.getElementById('sended');  //获取发送按钮
+var img1 = document.getElementById('img1'); //获取功能键
+    
+      text1.onFocus =function(){
+            button1.style.display = "block"; //发送按钮显示
+          img1.style.display = "none";//功能键隐藏
+//获取焦点后弹出第三方输入法，解决ios第三方输入法挡住底部input文本框
+          var interval = setInterval(function() {
+          document.body.scrollTop = document.body.scrollHeight
+  }, 100);
+
+      }
+      text1.onBlur = function(){
+          button1.style.display = "none";
+             img1.style.display ="block";
+      }
+
+      function zgh(){
+         if(text1.value !=""){ //如果文本框值不为空
+           button1.style.display = "block"; //发送按钮显示
+          img1.style.display = "none";//功能键隐藏
+
+          }else{
+             button1.style.display = "none";
+             img1.style.display ="block";
+          }             
+      }
+
+
+//按钮语音部分
+$(".left img").click(function(){
+  if($("#send_text1").is(":visible"))
+  {
+    $("#send_text1").hide();
+      var btn1 = $("<input type='button' id='testBtn' value='按住&nbsp&nbsp说话'>");
+              $(".send").append(btn1);        
+
+              $('#testBtn').bind("touchstart",function(e){
+                e.preventDefault();//阻止默认事件
+                $('#voide').show(); 
+                 theTime = setInterval('working()',200)               
+              })
+              $('#testBtn').bind("touchend",function(){                
+                $('#voide').hide();
+                clearInterval(theTime);
+              })       
+  } 
+  else{ 
+    $("#testBtn").remove();
+    $("#send_text1").show();  
+  }
+})
+
+
+
+//语音定时器效果 
+  var pax = document.getElementsByClassName('hande');//4个div的类名
+ 
+ var i = 0;
+       function working(){
+         if(i==pax.length){
+            i=0;
+            pax[0].style.display = "none";
+            pax[1].style.display = "none";
+            pax[2].style.display = "none";
+            pax[3].style.display = "none";            
+          }
+          if(i<pax.length){
+            pax[i].style.display = "block"
+              i=i+1
+          }
+         
+       }
+
+//聊天主程序
+function fasong(){
+        var  texting= document.getElementById("send_text1").value;
+            if(texting.trim() ==""){return false;}  //去掉前后空格后文本框是否为空值
+            else{
+        var div1 = document.createElement("div");
+        var div2 = document.createElement("div");
+        var img2 = document.createElement("img");
+            div1.className = "high" ;   //给div添加类名为high
+            div1.id = "highs" ;
+            div2.className = "cry" ;
+            img2.id = "image1" ;
+            img2.src = "images/toux.jpg" ;
+
+        var len = texting.length;          //定义len收集文本框字体的长度
+            div1.style.backgroundColor = "rgb(66,148,214)";
+            //'#'+('00000'+(Math.random()*0x1000000<<0).toString(16)).slice(-6); 随机颜色
+            var shopping1 =  len * 15 + len * 2  ;
+            var laughing1 =  550 - (len * 15 + len * 2) ;
+            div1.style.Width = shopping1/75 +"rem";
+            div1.style.marginLeft = laughing1/75 +"rem"  
+          
+            div1.innerHTML = texting;  //获取div1标签内的html赋值给 fish        
+        var chat = document.getElementById("chat") ;    
+            chat.appendChild(div1);  //创建的节点赋值为父节点chat的子节点
+            div1.appendChild(div2);
+            div1.appendChild(img2);
+        document.getElementById("send_text1").value = "";  //输完后文本框清空
+        var high = document.getElementById('highs'); 
+            high.addEventListener("click", dnf) ; //绑定删除事件
+  
+//控制滚动条一直在最下层
+                chat.scrollTop = chat.scrollHeight;  //显示容器的垂直偏移 = 显示容器的当前实际高度
+                 if ( chat.scrollTop  > 0 ){    //判断是否出现滚动条
+                     $(".history").show();         //显示历史记录div
+                 $(".history").click(function(){
+                     chat.scrollTop = -(chat.scrollHeight) ;  //点击div相反方向偏移
+                 }) 
+                     }
+                } 
+ //发送结束一次功能键复位
+    button1.style.display = "none";
+    img1.style.display ="block";
+//如果功能列表打开，发送结束后隐藏
+var fun = document.getElementById('bottom-top');
+    if(fun.style.display="block"){
+      fun.style.display="none"
+    }
+}
+ 
+//按回车发送信息
+//   window.onkeydown= function(evt){
+//      var evt = evt || window.evt;  //兼容ie写法
+//     if(evt.keyCode == 13){   //enter的键值为13
+//          var text2 = document.getElementById("send_text1").value;
+//             if(text2 != ""){        //文本是空值则发送不了
+//                 fasong() ;     
+//     }
+// }
+//          }
+
+  function fasong2(){
+     var  texting2= document.getElementById("send_text1").value;
+            if(texting2.trim() ==""){return false;}  //去掉前后空格后文本框是否为空值
+            else{
+        var div3 = document.createElement("div");
+        var div4 = document.createElement("div");
+        var img3 = document.createElement("img");
+            div3.className = "low" ;   //给div添加类名为high
+            div4.className = "laugh" ;
+            img3.id = "image2" ;
+            img3.src = "images/phone-img/10.jpg" ;
+
+        var len = texting2.length;          //定义len收集文本框字体的长度
+            div3.style.backgroundColor = "rgb(79,129,86)";
+            //'#'+('00000'+(Math.random()*0x1000000<<0).toString(16)).slice(-6); //随机颜色 
+            var shopping2 =   len * 2 +len* 15 ;
+            var laughing2 =  550 - (len * 15 + len * 2) ;
+            div3.style.Width = shopping2/75 +"rem";
+            div3.style.marginRight = laughing2/75 +"rem"  ;       
+            div3.innerHTML = texting2;  //获取div1标签内的html赋值给 fish        
+        var chat = document.getElementById("chat") ;    
+            chat.appendChild(div3);  //创建的节点赋值为父节点chat的子节点
+            div3.appendChild(div4);
+            div3.appendChild(img3);
+        document.getElementById("send_text1").value = "";  //输完后文本框清空
+  }
+}
+
+//出现气泡菜单栏
+function dnf(){
+    $('.delete').slideToggle('fast')     
+      }
+       
+//菜单栏删除聊天记录事件
+ $('#remove').click(function(){
+         $('.delete').remove();
+          $('.high').remove();
+      })
+ 
+  $('.chat').delegate('.delete','click',function(){
+                $(this).css('display','none');
+            });          
+
+//ajax跨域系列
+function init(){  
+   var   local_storage_data =   localStorage.getItem('local_storage_data');
+   var obj = JSON.parse(local_storage_data);
+  document.getElementById('id_name').innerHTML =  obj.name;
+
+}
+
+function get_data_ajax()
+{
+  var url = "json/chat.json";
+    var obj = {
+      name:name,
+     // age:18
+    };  
+    var local_storage_data = JSON.stringify(obj);  
+  var post_data = local_storage_data;
+
+  $.ajax({ 
+
+      url: url,
+      post_data:post_data,
+      dataType:"json",
+      success: function(data)
+      {
+      //  console.log(data);
+        show_data(data);
+      },
+      error:function(){
+         alert('error');
+      }
+    })
+}
+  
+function show_data(data)
+{
+  for(var i=0;i< data.data.length;i++){
+
+  }
+}
+
+
+
+</script>
+
+
+ 
+
+</body>
+</html>

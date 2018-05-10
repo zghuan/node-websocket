@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="yes" name="apple-mobile-web-app-capable"> 
+	<meta content="yes" name="apple-touch-fullscreen"> 
+	<meta content="telephone=no,email=no" name="format-detection"> 
+	<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+	<script src="js/flexible.js" type="text/javascript"></script>
+	<title>one_level</title>
+	<style>
+*{padding: 0;margin:0; box-sizing: border-box; max-height: 100000px; box-sizing: border-box;}
+body{margin: 0;padding: 0;font-family: "Microsoft","微软雅黑";box-sizing: border-box;height: auto;}
+html,div,img{margin: 0;padding: 0;}
+a{text-decoration: none;}
+a:hover{text-decoration:none;}
+img{max-width:100%;max-height: 100%;}
+#top{ height:0.53333rem;background: rgb(49,123,174);}
+#middle{ height: 1.173333rem;background: rgb(66,148,214);position: relative;}
+
+#middle .md-right{ width: 0.6667rem; height:0.6667rem;position: absolute;top: 0.253333rem;right: 0.32rem;}
+#middle .name{ text-align: center;line-height: 1.173333rem;color: white;font-size: 16px;font-family: "Microsoft","微软雅黑";}
+[data-dpr="2"] #middle .name{font-size:32px;}
+[data-dpr="3"] #middle .name{font-size:48px;}
+#find{ height: 1.133333rem;background: #eeeeee;}
+#find .search{ width: 93.6%;height: 0.6rem;margin:0.26667rem 3.2%; 
+  line-height: 0.6rem/9;font-size: 12px; outline: none;  border: 0.01rem solid rgb(44,148,214);border-radius: 0.1rem; text-indent: 0.08rem;background: url(images/group_chat/搜索.svg) center center white no-repeat; background-size: 0.5rem;}
+[data-dpr="2"] #find .search{font-size:24px;}
+[data-dpr="3"] #find .search{font-size:36px;}
+
+.flex{position: fixed;top: 0;left: 0;width:100%;height: auto; z-index: 50;}
+
+.add{ background: rgb(66,148,214); height: auto; width: 40%; position: absolute;top: 1.976663rem; right: 0.32rem; z-index: 50; -moz-box-shadow:2px 2px 5px #000;
+                   -webkit-box-shadow:2px 2px 5px #000;
+                           box-shadow: 2px 2px 5px #000; display: none; }
+.add p{ height: 1rem; line-height: 1rem; font-size: 14px; color: white; padding-left: 5% ;  }
+[data-dpr="2"] .add p{ font-size: 28px; }
+[data-dpr="3"] .add p{ font-size: 42px; }
+.add hr{width: 90%;height:1px;margin-top:7px;margin:0;border:0;color:white;
+  background-color:white;margin:auto;}
+
+.center{width: 100%;top:2.8rem;position: absolute;height: auto;}
+
+.control li{padding: 0.26667rem 0.1333rem; color: black;font-size: 12px;display: flex;}
+[data-dpr="2"] .control li{font-size:24px;}
+[data-dpr="3"] .control li{font-size:36px;}
+.control li:hover{background: #e0e0e0;}
+.control img{width: 0.6667rem;height:0.6667rem;}
+.control  span{align-self: center;margin-left: 0.0667rem;font-size: 12px;}
+[data-dpr="2"] .control span{font-size:24px;}
+[data-dpr="3"] .control span{font-size:36px;}
+
+
+#classAll{position: relative;top: 6.5rem;height: auto;box-shadow: border-box}
+.chat-top{width: 100%;height: 1.3333rem;color:#000;
+		position: relative;line-height: 1.3333rem;}
+		
+/*#classAll .chat-top:first-child{background: #eeeeee;}*/		
+.chat-top img{width: 1rem;vertical-align: middle;display:inline-block;margin-left:10px;}
+.chat-top span{font-size: 16px; align-self: center;display: inline-block;vertical-align: middle;}
+		[data-dpr="2"] .chat-top span{font-size:32px;}
+		[data-dpr="3"] .chat-top span{font-size:48px;}
+.chat-top:hover{background:#ddd !important ;}
+
+
+.bottom {position: fixed;z-index: 50;bottom: 0;left:0;width: 100%;height: 1.66667rem;
+  display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display:flex;
+  border-top: 0.01rem solid #ccc;background:#f0f0f0;}
+.bottom div{-webkit-flex: 1; -ms-flex: 1; flex: 1; -webkit-box-flex:1; -moz-box-flex:1; display: -webkit-box;display: -ms-flexbox;display: -webkit-flex; display:flex; flex-direction: column; 
+  -webkit-box-orient:vertical; -moz-box-orient:vertical; box-orient:vertical; -ms-flex-direction:column;
+  -webkit-flex-direction: column;
+   align-items: center;  box-align:center; -webkit-box-align:center; -ms-flex-align:center; -webkit-align-items:center; -webkit-flex-align:center; justify-content: center; box-pack:center; -webkit-box-pack:center;
+   -ms-flex-pack:center; -webkit-justify-content: center;}
+.bottom-left{ width: 0.813333rem;height: 0.813333rem;}
+.bottom span{ font-size: 8px; width: 1.5rem; height: auto; text-align: center; color: rgb(66,148,214);  line-height: auto; }
+[data-dpr="2"] .bottom span{ font-size: 16px; }
+[data-dpr="3"] .bottom span{ font-size: 24px; }
+</style>
+</head>
+
+<body>
+<div class="flex">
+	<div id="top"></div>
+	<div id="middle">    	
+		<div class="name">消息</div>
+        <div class="md-right" id="rimg">
+            <img src="images/one-level/功能.svg" />
+        </div>
+    </div>
+    <div id="find">
+		<input type="text" class="search input_test" value="" >
+	</div>
+</div>
+
+<div class="add" id="add">
+	<a href="UpGChat.html"><p>发起群聊</p></a>
+	<hr />
+	<a href="addfriend.html"><p>添加好友</p></a>
+</div>
+
+<div class="center">
+	<div class="control">
+		<ul>
+			<a href="textline.html"><li>
+				<img src="images/one-level/文件助手.svg" alt="">
+				<span>文件助手</span>
+			</li></a><hr />
+			<a href="teskMessage.html"><li>
+				<img src="images/one-level/任务助手.svg" alt="">
+				<span>任务助手</span>
+			</li></a><hr />
+			<a href="work-daily.html"><li>
+				<img src="images/one-level/工作日志.svg" alt="">
+				<span>工作日志</span>
+			</li></a><hr />
+		</ul>		
+	</div>
+</div>
+
+<div id="classAll">	
+	<div class="chat-top" >
+		<img src="images/phone-img/1.jpg" alt="">
+		<span class ="names">聊天室</span>
+	</div><hr />	
+</div>
+
+<div class="bottom">
+	<div>
+	    <div class="bottom-left"><a href="#"><img src="images/one-level/消息.svg" /></a><span>消息</span></div>
+	</div>
+	<div>
+	    <div class="bottom-left"><a href="address-book.html"><img src="images/one-level/通讯录white.svg" /></a><span>通讯录</span></div>
+	</div>
+	<div>
+	  	<div class="bottom-left"><a href="group_frame.html"><img src="images/one-level/chatwhite.svg" /></a><span>群聊</span></div>
+	</div>
+	<div>
+	   	<div class="bottom-left"><a href="my.html"><img src="images/one-level/self.svg" /></a><span>我的</span></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+//点击任何地方隐藏菜单
+$("#rimg").on("click", function(e){
+    $("#add").toggle();
+$(document).one("click", function(){
+    $("#add").hide();
+    });
+    e.stopPropagation();
+});
+$("#add").on("click", function(e){
+    e.stopPropagation();
+});
+
+ //localStrage传送名字
+	var classAll = document.getElementById('classAll'); 
+	var chat = classAll.getElementsByTagName('div');
+
+	for(var i=0;i<chat.length;i++){
+	 	chat[i].onclick = function (){
+	var names =	this.getElementsByTagName('span')[0].innerHTML ;
+	 			goto_chat(names);
+	 		window.location.href ="index.html"; 	
+	  	}
+	 }
+
+	function goto_chat(name){
+		var obj = {
+			name:name
+			
+		};	
+		var local_storage_data = JSON.stringify(obj);
+		localStorage.setItem('local_storage_data', local_storage_data);
+			
+	}
+
+
+
+
+</script>
+</body>
+</html>

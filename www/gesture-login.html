@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta content="yes" name="apple-mobile-web-app-capable"> 
+<meta content="yes" name="apple-touch-fullscreen"> 
+<meta content="telephone=no,email=no" name="format-detection">
+	<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+	<script src="js/flexible.js" type="text/javascript"></script> 
+	<title>gesture-login</title>
+	<style>
+*{padding: 0;margin:0; box-sizing: border-box; max-height: 100000px; box-sizing: border-box;}
+body{margin: 0;padding: 0;font-family: "Microsoft","微软雅黑";}
+html,div,img{margin: 0;padding: 0;}
+a{text-decoration: none ; display: block;}
+ul li{ list-style: none; display: block;}
+.box{min-width: 100%;position: relative; font-size: 12px;}
+[data-dpr="2"] .box{font-size:24px;}
+[data-dpr="3"] .box{font-size:36px;}
+#top{ height:0.53333rem;background: rgb(49,123,174);}
+#middle{ height: 1.173333rem;background: rgb(66,148,214);position: relative;}
+#middle .name{ text-align: center;line-height: 1.173333rem;color: white;font-size: 20px;font-family: "Microsoft","微软雅黑";}
+[data-dpr="2"] #middle .name{font-size:40px;}
+[data-dpr="3"] #middle .name{font-size:60px;}
+#middle .md-left{ width: 0.6667rem;height:0.6667rem;position: absolute;top: 0.253333rem;left: 0.15rem;}
+img{ width:100%;height: 100%; }
+
+.tximg{ width: 6rem; height: auto; margin:0.5rem auto;}
+.fimg{ width: 1.68rem; height: 1.68rem; box-sizing: border-box; cursor: pointer; margin: auto; }
+.p1{ display: block; text-align: center; line-height: normal;  cursor: pointer;  color:#555555;
+	margin-top: 0.2rem; font:12px "微软雅黑";}
+[data-dpr="2"] .p1{ font-size: 24px; }
+[data-dpr="3"] .p1{ font-size: 36px; }
+
+.p2{ display: block; text-align: center; font: 18px "微软雅黑"; margin-bottom: 0.5rem; margin: 0.8rem;}
+[data-dpr="2"] .p2{ font-size: 36px; }
+[data-dpr="3"] .p2{ font-size: 54px; }
+
+.flex{ height: 1.653333rem; display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display:flex;  justify-content: space-around;}
+.flex div{ -webkit-flex: 1; -ms-flex: 1; flex: 1; -webkit-box-flex:1; -moz-box-flex:1; display: -webkit-box;display: -ms-flexbox;display: -webkit-flex; display:flex; justify-content: center; align-items: center; flex-direction: column;
+  -webkit-box-orient:vertical; -moz-box-orient:vertical; box-orient:vertical; -ms-flex-direction:column;
+  -webkit-flex-direction: column;align-content: space-around;}
+.flex div span{ border:0.1rem solid #73add0; width: 1.653333rem; height: 1.653333rem; border-radius:50%;}
+.flex-2{ margin-top: 1.04rem; }
+.flex-3{ margin-top: 1.04rem; }
+
+.p3{ font: 16px "微软雅黑"; cursor: pointer; width: 3rem; margin:1.4rem auto; text-align: center; 
+   color: #9c9c9c;}
+[data-dpr="2"] .p3{ font-size: 32px; }
+[data-dpr="3"] .p3{ font-size: 48px; }
+
+	</style>
+
+
+</head>
+<body>
+<div class="box">
+
+    <div id="top"></div>
+    <div id="middle">
+        <div class="md-left">
+            <a href="login.html"><img src="images/chat/返回.svg" /></a>
+        </div>
+        <div class="name">手势指纹登录</div>
+    </div>
+    
+    <div class="tximg">
+    	<div class="fimg"><img src="images/login/用户头像.svg" /></div>
+    	<p class="p1">12345678910</p>
+    </div>
+
+    <p class="p2">请录入设定的指纹或手势</p>
+
+    <div class="flex flex-1">
+    	<div class="dv1">
+    		<span></span>
+    	</div>
+    	<div class=""><span></span></div>
+    	<div><span></span></div>
+
+    </div>
+    <div class="flex flex-2">
+    	<div class="dv1">
+    		<span></span>
+    	</div>
+    	<div class=""><span></span></div>
+    	<div><span></span></div>
+    	
+    </div>
+    <div class="flex flex-3">
+    	<div class="dv1">
+    		<span></span>
+    	</div>
+    	<div class=""><span></span></div>
+    	<div><span></span></div>
+    	
+    </div>
+
+    <p class="p3">重新登录</p>
+</div>  
+
+  
+</body>
+</html>

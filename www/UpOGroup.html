@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"> 
+<meta content="yes" name="apple-mobile-web-app-capable"> 
+<meta content="yes" name="apple-touch-fullscreen"> 
+<meta content="telephone=no,email=no" name="format-detection">
+<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+<script src="js/flexible.js" type="text/javascript"></script> 
+  <title>address-book</title>
+
+
+<style type="text/css">
+*{padding: 0;margin:0; box-sizing: border-box; max-height: 100000px; box-sizing: border-box;}
+body{margin: 0;padding: 0;font-family: "Microsoft","微软雅黑";}
+html,div,img{margin: 0;padding: 0;}
+a{text-decoration: none;}
+.box{min-width: 100%;position: relative; font-size: 12px;top: 1.706667rem;}
+[data-dpr="2"] .box{font-size:24px;}
+[data-dpr="3"] .box{font-size:36px;}
+#top{ height:0.53333rem;background: rgb(49,123,174);}
+#middle{ height: 1.173333rem;background: rgb(66,148,214);position: relative;}
+#middle .name{ text-align: center;line-height: 1.173333rem;color: white;font-size: 16px;}
+[data-dpr="2"] #middle .name{font-size:32px;}
+[data-dpr="3"] #middle .name{font-size:48px;}
+#middle .md-rl{ width: 1rem;height:0.6667rem;position: absolute;top: 0.2533333rem; font-size: 14px;
+display: block; background: rgb(66,148,214); text-align: center;line-height: 0.6667rem; color: white;
+cursor: pointer;}
+[data-dpr="2"] #middle .md-rl{ font-size: 28px; }
+[data-dpr="3"] #middle .md-rl{ font-size: 42px; }
+#middle .left{ left: 0.32rem; }
+
+#find{ height: 1.133333rem;background: #eeeeee; }
+#find .search{ width: 93.6%;height: 0.6rem;margin-top:0.26667rem; margin:0.26667rem 3.2%; 
+  line-height: 0.6rem/9;font-size: 12px; outline: none;  border: 0.01rem solid rgb(44,148,214);border-radius: 0.1rem; text-indent: 0.08rem;font-family: "微软雅黑"; 
+  background: url(images/address/search.svg) center center white no-repeat; background-size: 0.5rem; }
+[data-dpr="2"] #find .search{font-size:24px;}
+[data-dpr="3"] #find .search{font-size:36px;}
+img{ width:100%;height: 100%; }
+
+.flex{position: fixed;top: 0;left: 0;width:100%;height: auto; z-index: 50;}
+
+.friend{ height: 1.44rem;  padding-left: 3.2%;  line-height: 1.44rem; font-family: "微软雅黑";font-size: 14px; }
+[data-dpr="2"] .friend{font-size:28px;}
+[data-dpr="3"] .friend{font-size:42px;}
+
+ .hr{width: 96.8%;height:1px;margin-top:7px;border:0;color:#888888;
+  background-color:#888888;margin:0;-webkit-margin-start:3.2%;}
+
+.A-li{font:12px "微软雅黑";background:#eaebeb;height:0.68rem; padding:0 0.32rem;
+    color: #8fc3e2;line-height: 0.68rem; border: 2px solid #c5c4c4; border-left: 0; border-right: 0; }
+[data-dpr="2"] .A-li{font-size:24px;}
+[data-dpr="3"] .A-li{font-size:36px;}
+.list-A{ height: 1.4rem; }
+.wimg{ width: 0.8rem; height: 0.786667rem; margin: 0.173333rem 0.24rem 0.173333rem 3.2%; float: left; }
+.word{ height: 1.4rem; width: 81%; line-height: 1.4rem;  float: left; }
+
+</style>
+</head>
+<body>
+<div class="box">
+	<div class="flex">
+		  <div id="top"></div>
+			  <div id="middle"> 
+				<botton class="md-rl left">取消</botton>
+			  <div class="name">选择一个群</div>
+			  </div>
+	</div>
+
+    <ul>
+    <li class="list-A">
+      <div class="wimg"></div>
+      <p class="word"></p>
+    </li>
+    <hr class="hr" />
+    <li class="list-A">
+      <div class="wimg"></div>
+      <p class="word"></p>
+    </li>
+     <hr class="hr" />
+  </ul>
+
+  <ul>
+    <li class="list-A">
+      <div class="wimg"></div>
+      <p class="word"></p>
+    </li>
+    <hr class="hr" />
+    <li class="list-A">
+      <div class="wimg"></div>
+      <p class="word"></p>
+    </li>
+     <hr class="hr" />
+  </ul>
+
+  <ul>
+    <li class="list-A">
+      <div class="wimg"></div>
+      <p class="word"></p>
+    </li>
+    <hr class="hr" />
+    <li class="list-A">
+      <div class="wimg"></div>
+      <p class="word"></p>
+    </li>
+     <hr class="hr" />
+  </ul>
+
+  <ul>
+    <li class="list-A">
+      <div class="wimg"></div>
+      <p class="word"></p>
+    </li>
+    <hr class="hr" />
+    <li class="list-A">
+      <div class="wimg"></div>
+      <p class="word"></p>
+    </li>
+     <hr class="hr" />
+  </ul>
+
+</div>  
+ 
+</body>
+</html>

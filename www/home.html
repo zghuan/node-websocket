@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="yes" name="apple-touch-fullscreen">
+        <meta content="telephone=no,email=no" name="format-detection">
+        <script type="text/javascript" src="js/flexible.js"></script>
+		<title>home</title>
+<style>
+
+.home{ width: 100%; margin:0 auto;}
+.home img{ width: 100%;}
+</style>
+</head>
+<body>
+	<div id="ShowDiv"></div>
+    
+		<div class="home">
+			<img src="images/寰智.jpg">
+		</div>
+<!-- <div id="middle">
+    <div class="hand">
+        企业金<i class="i">沄</i>助手
+    </div> 
+</div> -->
+
+<script>
+var show = document.getElementById('ShowDiv')
+    var num = 2;
+        setTimeout(pk,1000)
+    function pk(){
+        show.innerHTML = "";
+        num--
+        if(num<0){
+            window.location.href ="hand_login.html"
+        }else{
+            setTimeout(pk,1000)
+        }
+    }
+</script>
+</body>
+</html>

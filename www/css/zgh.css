@@ -1,0 +1,60 @@
+.time-line {
+  list-style: none;
+  margin: 0;
+  position: relative;
+  top: -18px; }
+  .time-line .list-content {
+    display: flex;
+    background-color: rgba(255, 0, 0, 0.2);
+    font-size: 12px;
+    padding: 12px 10px 12px 0;
+    margin-left: 10px;
+    position: relative;
+    bottom: -18px; }
+    .time-line .list-content .title {
+      flex-grow: 1; }
+    .time-line .list-content .time {
+      font-weight: 200;
+      font-size: 12px;
+      color: #999999; }
+  .time-line .timeline-stone {
+    border-left: #eaeaea 1px solid;
+    background-color: rgba(0, 255, 0, 0.5);
+    position: relative;
+    margin-left: -23px;
+    font-weight: 200;
+    color: #666666; }
+    .time-line .timeline-stone::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      background-color: #eaeaea;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 0;
+      left: -3px; }
+    .time-line .timeline-stone.is-completed {
+      border-left-color: #7d5ae7;
+      z-index: 1;
+      color: #7d5ae7;
+      font-weight: 600; }
+      .time-line .timeline-stone.is-completed:first-child {
+        border-left: transparent 1px solid; }
+      .time-line .timeline-stone.is-completed::before {
+        width: 11px;
+        height: 11px;
+        background-color: #7d5ae7;
+        opacity: 0.4;
+        left: -6px;
+        bottom: -5px; }
+      .time-line .timeline-stone.is-completed::after {
+        content: '';
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        position: absolute;
+        background-color: #7d5ae7;
+        left: -4px;
+        bottom: -3px; }
+
+/*# sourceMappingURL=zgh.css.map */

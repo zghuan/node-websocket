@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"> 
+<meta content="yes" name="apple-mobile-web-app-capable"> 
+<meta content="yes" name="apple-touch-fullscreen"> 
+<meta content="telephone=no,email=no" name="format-detection">
+<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+<script src="js/flexible.js" type="text/javascript"></script> 
+  <title>通讯录</title>
+
+
+<style type="text/css">
+*{padding: 0;margin:0; box-sizing: border-box; max-height: 100000px; box-sizing: border-box;}
+body{margin: 0;padding: 0;font-family: "Microsoft","微软雅黑";}
+html,div,img{margin: 0;padding: 0;}
+p,span,a{ display: block; }
+ul li{ list-style: none; display: block; }
+a{text-decoration: none;}
+img{ width:100%;height: 100%; }
+.box{min-width: 100%;position: relative; font-size: 12px; margin-top: 1.706667rem;}
+[data-dpr="2"] .box{font-size:24px;}
+[data-dpr="3"] .box{font-size:36px;}
+#top{ height:0.53333rem;background: rgb(49,123,174);}
+#middle{ height: 1.173333rem;background: rgb(66,148,214);position: relative;}
+#middle .name{ text-align: center;line-height: 1.173333rem;color: white;font-size: 16px;}
+[data-dpr="2"] #middle .name{font-size:32px;}
+[data-dpr="3"] #middle .name{font-size:48px;}
+#middle .md-left{ width: 0.6667rem;height:0.6667rem;position: absolute;top: 0.253333rem;left: 0.15rem;}
+.fixed{position: fixed;top: 0;left: 0;width:100%;height: auto; z-index: 50;}
+
+.groupName{  height: 1.13333rem;  }
+.gName{height: 1.13333rem;}
+.gN{ width:50%; float: left; color: black; font:14px "微软雅黑";line-height: 1.13333rem; 
+     margin-left: 0.32rem; }
+[data-dpr="2"] .gN{ font-size: 28px; }
+[data-dpr="3"] .gN{ font-size: 42px; }
+.notset{ width: 20%; float: right; color: #c8c6c6; font:12px "微软雅黑";line-height: 1.13333rem; text-align: right; }
+[data-dpr="2"] .notset{ font-size: 24px; }
+[data-dpr="3"] .notset{ font-size: 36px; }
+.wimg{ height: 1.13333rem; width: 6%;  float: right;}
+.wimg span{ height: 0.4rem; width: 0.226667rem; margin-top: .36667rem; }
+
+.bg{ height: 0.46667rem; background: #efefef; border:2px solid #dbdadf; border-left: 0; border-right: 0; }
+
+.groupPson{ height: auto; overflow: hidden;  }
+.groupPson a{ height: auto;width: 1.306667rem; box-sizing: border-box; float: left;
+    margin-left: 0.57778rem; margin-top: 0.373333rem; margin-bottom: 0.37333rem; }
+.groupPson li{ height: 1.306667rem; width: 100%; background: rgb(66,148,214); border-radius: 50%;
+  box-sizing: border-box;}
+.groupPson span{ width: 100%; text-align: center; font:12px "微软雅黑"; margin-top: 0.2rem; display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color: #8a8a8a;}
+[data-dpr="2"] .groupPson span{ font-size: 24px; }
+[data-dpr="3"] .groupPson span{ font-size: 36px; }
+
+.gSet{  height: auto; }
+.gSet li{ height: 1.13333rem; }
+.hr{width: 96.8%;height:1px;margin-top:7px;border:0;color:#888888;
+  background-color:#888888;margin:0;-webkit-margin-start:0.32rem;}
+
+</style>
+</head>
+<body>
+<div class="box">
+	<div class="fixed">
+		  <div id="top"></div>
+			  <div id="middle">
+        <div class="md-left">
+            <a href="group_frame.html"><img src="images/group-set/返回.svg" /></a>
+        </div>
+			  <div class="name">群设置</div>
+      </div>
+  </div>  
+  
+  <div class="groupName">
+    <p class="gName gN">群聊名称</p>
+    <div class="wimg"><span><img src="images/group-set/返回（右）.svg" /></span></div>
+    <p class="gName notset">未设置</p>
+  </div>
+
+  <div class="bg"></div>
+
+
+  <ul class="groupPson">
+    <a><li></li><span>姓名姓名姓名姓名</span></a>
+    <a><li></li><span>姓名</span></a>
+    <a><li></li><span>姓名</span></a>
+    <a><li></li><span>姓名</span></a>
+    <a><li></li><span>姓名</span></a>
+    <a><li></li><span>姓名</span></a>
+    <a><li></li><span>姓名</span></a>
+    <a><img src="images/group-set/加号.svg" alt=""></a>
+  </ul>
+  
+  <div class="bg"></div>
+
+  <ul class="gSet">
+    <li>
+      <p class="gName gN">群公告</p>
+      <div class="wimg"><span><img src="images/group-set/返回（右）.svg" /></span></div>
+      <p class="gName notset">未设置</p>
+    </li>
+    <hr class="hr"></hr>
+    <li>
+      <p class="gName gN">置顶</p>
+      <div class="wimg"><span><img src="images/group-set/返回（右）.svg" /></span></div>
+      <p class="gName notset">未设置</p>
+    </li>
+    <hr class="hr"></hr>
+    <li>
+      <p class="gName gN">查看文件</p>
+      <div class="wimg"><span><img src="images/group-set/返回（右）.svg" /></span></div>
+    </li>
+    <hr class="hr"></hr>
+    <li>
+      <p class="gName gN">查找内容</p>
+      <div class="wimg"><span><img src="images/group-set/返回（右）.svg" /></span></div>
+    </li>
+    <hr class="hr"></hr>
+    <li>
+      <p class="gName gN">删除并退出</p>
+      <div class="wimg"><span><img src="images/group-set/返回（右）.svg" /></span></div>
+    </li>
+    <hr class="hr"></hr>
+  </ul>
+
+
+</div>
+</body>
+</html>

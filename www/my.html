@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="yes" name="apple-mobile-web-app-capable"> 
+	<meta content="yes" name="apple-touch-fullscreen"> 
+	<meta content="telephone=no,email=no" name="format-detection"> 
+	<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+	<script src="js/flexible.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="css/my-set-data-list.css"/><!-- 修改昵称插件 -->
+	<title>my</title>
+	
+	<style>
+*{padding: 0;margin:0; box-sizing: border-box; max-height: 100000px; box-sizing: border-box;}
+body{margin: 0;padding: 0;font-family: "Microsoft","微软雅黑";box-sizing: border-box; }
+html,div,img{margin: 0;padding: 0;}
+html{height: 100%;}
+s,a{text-decoration: none;}
+a:hover{text-decoration: none;}
+ul,li{ list-style: none;}
+span{display: block;}
+img{max-width:100%;max-height: 100%;}
+.box{min-width: 100%;position: relative; font-size: 12px;height: 100%;margin-bottom: 1.66667rem;}
+[data-dpr="2"] .box{font-size:24px;}
+[data-dpr="3"] .box{font-size:36px;}
+#top{ height:0.53333rem;background: rgb(49,123,174);margin-bottom: -1px;}
+#middle{ height: 1.173333rem;background: #323131;position: relative;margin-bottom: -1px;}
+#middle .name{ text-align: center;line-height: 1.173333rem;color: white;font-size: 16px;font-family: "Microsoft","微软雅黑";}
+[data-dpr="2"] #middle .name{font-size:32px;}
+[data-dpr="3"] #middle .name{font-size:48px;}
+
+.hed{border-radius: 50%;width: 1.68rem;height: 1.68rem;overflow: hidden;}
+.data{width: 100%;height: 2.5rem;position: relative;background: #323131;color: white;margin-bottom: -1px;}
+.move{position: absolute;left: 0.4rem;top:0.4rem;display: flex;}
+.move img{width: 1.68rem;height: 1.68rem;}
+.move span{align-self: center;margin-left: 0.0667rem;}
+
+.data_list{position: absolute;right:0.5667rem;bottom:0.6667rem;text-align: center;vertical-align:middle;}
+.data_list:active{background: rgba(0,0,0,0.2);}
+.set{width: 0.6667rem;height: 0.6667rem;vertical-align:middle;margin: 0 auto;}
+.set img,.set span{vertical-align:middle;margin:0 auto;}
+.list{background: #323131;}
+.list li:active{background: rgb(49,123,174);}
+.list ul{ display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display:flex;}
+.list li{ flex:1; -webkit-flex:1; -ms-flex:1; border: 1px solid #ddd; border-top:0; border-bottom: 0;border-left: 0;border-right:1px;transition: all 0.5s ease-out 0s;cursor: pointer;position: relative;}
+
+.list span{text-align: center;color: white;font-size: 12px;}
+[data-dpr="2"] .list span{font-size:24px;}
+[data-dpr="3"] .list span{font-size:36px;}
+
+
+.air{ height: 0.46667rem; background: #efefef; border:2px solid #dbdadf; border-left: 0; border-right: 0; }
+.function li{height: 1.13333rem; color: black;font-size: 12px;line-height: 1.13333rem;position: relative;}
+[data-dpr="2"] .function li{font-size:24px;}
+[data-dpr="3"] .function li{font-size:36px;}
+.function li:hover{background: #efefef;}
+.function .img1{position: absolute;width: 0.7rem;height: 0.7rem;left: 0.32rem;top:0.2rem;}
+.function .img2{position: absolute;width: 0.26667rem;height: 0.26667rem;right: 0.32rem;top:0.4rem;}
+.function span{margin-left: 1.2rem;font-size: 14px;}
+[data-dpr="2"] .function span{font-size:28px;}
+[data-dpr="3"] .function span{font-size:42px;}
+
+.log_of{text-align: center;}
+.login{ width:100%;height: 1.25rem; color: white; background: rgb(66,148,214);font-size: 15px;border: 0; 
+  cursor:pointer;-webkit-appearance:none;}
+[data-dpr="2"] .login{font-size:30px;}
+[data-dpr="3"] .login{font-size:45px;}
+
+.bottom {position: fixed;z-index: 50;bottom: 0;left:0;width: 100%;height: 1.66667rem;
+  display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display:flex;
+  border-top: 0.01rem solid #ccc;background:#f0f0f0;}
+.bottom div{-webkit-flex: 1; -ms-flex: 1; flex: 1; -webkit-box-flex:1; -moz-box-flex:1; display: -webkit-box;display: -ms-flexbox;display: -webkit-flex; display:flex; flex-direction: column; 
+  -webkit-box-orient:vertical; -moz-box-orient:vertical; box-orient:vertical; -ms-flex-direction:column;
+  -webkit-flex-direction: column;
+   align-items: center;  box-align:center; -webkit-box-align:center; -ms-flex-align:center; -webkit-align-items:center; -webkit-flex-align:center; justify-content: center; box-pack:center; -webkit-box-pack:center;
+   -ms-flex-pack:center; -webkit-justify-content: center;}
+.bottom-left{ width: 0.813333rem;height: 0.813333rem;}
+.bottom span{ font-size: 8px; width: 1.5rem; height: auto; text-align: center; color:rgb(49,123,174); line-height: auto; 
+   }
+[data-dpr="2"] .bottom span{ font-size: 16px; }
+[data-dpr="3"] .bottom span{ font-size: 24px; }
+
+#sign_in_div{
+	width: 0.4rem;height: 0.3rem;position: absolute;top: 0;right:0;background: #fff;
+	border-radius: 5px;
+}
+</style>
+
+</head>
+<body onload="inits()">
+<div class="box">
+    <div id="top"></div>
+<div id="middle">
+    <div class="name">我的</div>
+</div>
+
+<div class="data">
+   		<div class="move">
+   			<div class="hed">		
+		   		<a href="#">
+		   			<img src="images/toux.jpg" alt="">      				
+		   		</a>
+	   		</div> 
+	   			<span>
+		   		昵称：<s id="namess">吃鸡吃鸡</s><br>
+		   		账号：<i>785774770</i>
+	   			</span>
+   		</div>
+   					
+   		
+<div class="data_list">
+   	<span>修改昵称</span>
+   		<div class="set">
+		   	<a href="#">	   		
+		   		<img src="images/my/修改资料.svg" alt="">
+		   	</a>
+	   	</div>
+
+	<div id="dialogBg"></div>
+	<div id="dialog" class="animated">
+		<img class="dialogIco" width="50" height="50" src="images/修改.svg" alt="" />
+			<div class="dialogTop">
+				<a href="javascript:;" class="claseDialogBtn"><span>关闭</span></a>
+			</div>
+		<form action="" method="post" id="editForm">
+			<ul class="editInfos">
+				<li><label><span>昵称:</span><input type="text" name="" required value="" class="ipt"/></label></li>
+				<li><input type="submit" value="确认修改" class="submitBtn" id="ins" /></li>
+			</ul>
+		</form>
+	</div>
+</div>
+
+</div>
+		
+
+    <div class="list">
+	    <ul>
+		    <li class="li"><span>本月签到</span><span id="sign_in">0</span></li>
+		   
+		    <li class="li"><span>任务</span><span>5</span></li>
+		   
+		    <li class="li"><span>文件</span><span>7</span></li>
+		  
+		    <li class="li"><span>收藏</span><span>9</span></li>
+	    </ul>
+    </div>
+
+
+<div class="air"></div>
+<div class="function">
+	<ul>
+		<a href="teskMessage.html"><li><img src="images/my-icon/任务消息.svg" alt="" class="img1"><span>任务消息</span><img src="images/my/返回.svg" alt="" class="img2"></li></a><hr />
+		<a href="officeSupport.html"><li><img src="images/my-icon/办公辅助.svg" alt="" class="img1"><span>办公辅助</span><img src="images/my/返回.svg" alt="" class="img2"></li></a><hr />
+		<a href="my-collect.html"><li><img src="images/my-icon/我的收藏.svg" alt="" class="img1"><span>我的收藏</span><img src="images/my/返回.svg" alt="" class="img2"></li></a><hr />
+		<a href="work-daily.html"><li><img src="images/my-icon/工作日志.svg" alt="" class="img1"><span>工作日志</span><img src="images/my/返回.svg" alt="" class="img2"></li></a>
+		<div class="air"></div>
+		<a href=""><li><img src="images/my-icon/关于寰聊.svg" alt="" class="img1 huan"><span>关于软件</span><img src="images/my/返回.svg" alt="" class="img2"></li></a><hr />
+		<a href=""><li><img src="images/my-icon/切换账号.svg" alt="" class="img1 huan"><span>切换账号</span><img src="images/my/返回.svg" alt="" class="img2"></li></a><hr />
+		<a href=""><li><img src="images/my-icon/修改密码.svg" alt="" class="img1"><span>修改密码</span><img src="images/my/返回.svg" alt="" class="img2"></li></a>
+	</ul>
+</div>
+<div class="air"></div>
+<div class="log_of"><input type="button" value="退出登陆" class="login" onclick="exit()"></div>
+
+<div class="bottom">
+    <div >
+        <div class="bottom-left"><a href="one_level.html"><img src="images/address/mmessage.svg" /></a><span>消息</span></div>
+    </div>
+    <div >
+      	<div class="bottom-left"><a href="address-book.html"><img src="images/my/通讯录white.svg" /></a><span>通讯录</span></div>
+    </div>
+    <div>
+      	<div class="bottom-left"><a href="group_frame.html"><img src="images/address/chatwhite.svg" /></a><span>群聊</span></div>
+    </div>
+    <div>
+      	<div class="bottom-left"><a href="#"><img src="images/my/个人信息.svg" /></a><span>我的</span></div>
+    </div>
+  </div>
+</body>
+<script>
+//退出登陆
+	function exit(){
+			window.location.href = "hand_login.html";
+	}
+
+//修改资料弹出层
+var w,h,className;
+function getSrceenWH(){
+	w = $(window).width();
+	h = $(window).height();
+	$('#dialogBg').width(w).height(h);
+}
+
+window.onresize = function(){  
+	getSrceenWH();
+
+}  
+$(window).resize();  
+
+$(function(){
+	getSrceenWH();
+	
+	$('.set a').click(function(){
+		className = $(this).attr('class');
+		$('#dialogBg').fadeIn(300);
+		$('#dialog').removeAttr('class').addClass('animated '+className+'').fadeIn();
+			  var te = $('.move s').text();
+			  	$('.ipt').attr('value',te)
+			 
+	});
+	
+	$('.claseDialogBtn').click(function(){
+		$('#dialogBg').fadeOut(300,function(){
+			$('#dialog').addClass('bounceOutUp').fadeOut();
+
+		});
+	});
+
+});
+
+//修改昵称
+$('#ins').click(function(){
+	var sname = document.getElementsByClassName('ipt')[0].value;//获取当前修改昵称的值
+ 	goto_chats(sname);
+ 		}) 	
+
+function goto_chats(name1)
+{
+	var obj = {
+		name1:name1	
+	};	
+	var local_storage_datas = JSON.stringify(obj);
+	localStorage.setItem('local_storage_datas', local_storage_datas);	
+}
+function inits(){  
+   var local_storage_datas =   localStorage.getItem('local_storage_datas');
+   var obj = JSON.parse(local_storage_datas);
+  	document.getElementById('namess').innerHTML =  obj.name1;
+
+}
+
+//签到
+var li_one = document.getElementsByClassName('li')[0] ;
+        var sign_in = document.getElementById('sign_in');
+        var zgh = 0;
+        var timer = 0;
+            li_one.onclick = function(){
+               zgh++;
+            sign_in.innerHTML = zgh;
+        var sign_in_div = document.createElement("div");
+           	sign_in_div.id = 'sign_in_div';
+           	sign_in_div.innerHTML = '+1';
+            li_one.appendChild(sign_in_div);
+            timer = setTimeout(fadeOut,800)
+        }
+    function fadeOut(){
+    	$(sign_in_div).fadeOut();
+    }
+</script>
+</html>

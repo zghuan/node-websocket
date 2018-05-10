@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>hand_login</title>
+    <style type="text/css">
+        body {
+            text-align: center;
+            background-color: rgb(66,148,214);
+            position: relative;     
+        }
+        .title {
+            color: whitesmoke;
+        }
+        span{        
+            color: whitesmoke;         
+            text-align: center;
+            top: 400px;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript" src="js/hand_login.js"></script>
+<script type="text/javascript">
+new H5lock({
+    chooseType: 3
+}).init();
+</script>
+<span onclick="pk()">密码登陆</span>
+</body>
+<script>
+    function pk(){
+      window.location.href ="login.html";   
+    }
+</script>
+</html>

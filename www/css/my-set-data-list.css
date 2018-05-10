@@ -1,0 +1,154 @@
+.animated{
+	-webkit-animation-duration:1.4s;
+	animation-duration:1.4s;
+	-webkit-animation-fill-mode:both;
+	animation-fill-mode:both
+}
+
+@-webkit-keyframes bounceIn{
+	0%{
+	opacity:0;
+	-webkit-transform:scale(.3);
+	transform:scale(.3)
+}
+50%{
+	opacity:1;
+	-webkit-transform:scale(1.05);
+	transform:scale(1.05)
+}
+70%{
+	-webkit-transform:scale(.9);
+	transform:scale(.9)
+}
+100%{
+	opacity:1;
+	-webkit-transform:scale(1);
+	transform:scale(1)
+}
+
+}
+@keyframes bounceIn{
+	0%{
+	opacity:0;
+	-webkit-transform:scale(.3);
+	-ms-transform:scale(.3);
+	transform:scale(.3)
+}
+50%{
+	opacity:1;
+	-webkit-transform:scale(1.05);
+	-ms-transform:scale(1.05);
+	transform:scale(1.05)
+}
+70%{
+	-webkit-transform:scale(.9);
+	-ms-transform:scale(.9);
+	transform:scale(.9)
+}
+100%{
+	opacity:1;
+	-webkit-transform:scale(1);
+	-ms-transform:scale(1);
+	transform:scale(1)
+}
+
+}
+.bounceIn{
+	-webkit-animation-name:bounceIn;
+	animation-name:bounceIn
+}
+
+@-webkit-keyframes bounceInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-2000px);
+    transform: translateY(-2000px);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translateY(30px);
+    transform: translateY(30px);
+  }
+
+  80% {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-2000px);
+    -ms-transform: translateY(-2000px);
+    transform: translateY(-2000px);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translateY(30px);
+    -ms-transform: translateY(30px);
+    transform: translateY(30px);
+  }
+
+  80% {
+    -webkit-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+.bounceInDown {
+  -webkit-animation-name: bounceInDown;
+  animation-name: bounceInDown;
+}
+
+/*------------------- 华丽分割线 -----------------------*/
+
+#dialogBg{width:100%;height:100%;background:#000000;
+opacity:.8;filter:alpha(opacity=60);position:fixed;top:0;left:0;z-index:9999;display:none;}
+
+#dialog{ width: 6rem; height:3.5rem; margin:auto; 
+display: none; background: #ffffff; position: fixed; top:0; left:0;right: 0;bottom: 0; 
+ z-index: 10000; box-shadow: 3px 2px 4px rgba(0,0,0,0.2); -webkit-box-shadow: 3px 2px 4px rgba(0,0,0,0.2);}
+
+.dialogTop{width:90%;margin:0 auto;border-bottom:1px dotted #ccc;letter-spacing:1px;padding:0.1333rem 0;text-align:right;}
+.dialogTop span{color:white;font-size: 12px; background:rgb(49,123,174);display: inline-block;padding:0.06667rem;border-radius: 5px;}
+[data-dpr="2"] .dialogTop span{ font-size: 24px; }
+[data-dpr="3"] .dialogTop span{ font-size: 36px; }
+
+
+.dialogIco{width:0.8rem;height:0.8rem;position:absolute;top:-0.333rem;left:50%;margin-left:-0.333rem;}
+.editInfos{padding:15px 0;color:black;}
+.editInfos span{display: inline-block;font-size: 15px;color: rgb(49,123,174)}
+[data-dpr="2"] .editInfos span{ font-size: 30px; }
+[data-dpr="3"] .editInfos span{ font-size: 45px; }
+
+.editInfos li{width:100%;text-align: center;}
+.ipt{border:1px solid rgb(49,123,174);padding:5px;border-radius:3px;height: 0.7rem;
+	-webkit-border-radius:3px;box-shadow:0 0 3px #ccc inset;-webkit-box-shadow:0 0 3px #ccc inset;margin-left:0.0667rem;}
+.ipt:focus{outline:none;border-color:#66afe9;
+	box-shadow:0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
+	-webkit-box-shadow:0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);}
+
+.submitBtn{width:2rem;height:0.8rem;line-height:0.4rem;
+	font-family:"微软雅黑","microsoft yahei";cursor:pointer;
+	margin-top:0.2667rem;
+	border-radius:5px;-webkit-border-radius:5px;text-align:center;
+	color:white;
+	font-size: 12px;
+background: rgb(49,123,174)}
+[data-dpr="2"] .submitBtn{ font-size: 24px; }
+[data-dpr="3"] .submitBtn{ font-size: 36px; }

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<meta content="yes" name="apple-mobile-web-app-capable"> 
+<meta content="yes" name="apple-touch-fullscreen"> 
+<meta content="telephone=no,email=no" name="format-detection">
+ <script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+<script src="js/flexible.js" type="text/javascript"></script> 
+<title>my-collect</title>
+<style>
+*{padding: 0;margin:0; box-sizing: border-box; max-height: 100000px; box-sizing: border-box;}
+body{margin: 0;padding: 0;font-family: "Microsoft","微软雅黑";height: 100%}
+html,div,img{margin: 0;padding: 0;}
+img{ width:100%;height: 100%; }
+html{height: 100%}
+a{text-decoration: none;color: #000;display: block;}
+a:hover{text-decoration: none;}
+.box{min-width: 100%;position: relative; font-size: 12px;top: 2.776667rem;height: 15rem;}
+[data-dpr="2"] .box{font-size:24px;}
+[data-dpr="3"] .box{font-size:36px;}
+#top{ height:0.53333rem;background: rgb(49,123,174);}
+#middle{ height: 1.173333rem;background: rgb(66,148,214);position: relative;}
+#middle .name{ text-align: center;line-height: 1.173333rem;color: white;font-size: 16px;}
+[data-dpr="2"] #middle .name{font-size:32px;}
+[data-dpr="3"] #middle .name{font-size:48px;}
+#middle .md-left{ width: 0.6667rem;height:0.6667rem;position: absolute;top: 0.2533333rem;left: 0.32rem;}
+#find{ height: 1.133333rem;background: #eeeeee;}
+#find .search{ width: 93.6%;height: 0.6rem;margin-top:0.26667rem; margin:0.26667rem 3.2%; 
+  line-height: 0.6rem/9;font-size: 12px; outline: none;  border: 0.01rem solid rgb(44,148,214);border-radius: 0.1rem; text-indent: 0.08rem;font-family: "微软雅黑";
+  background: url(images/address/search.svg) center center white no-repeat; background-size: 0.5rem;}
+[data-dpr="2"] #find .search{font-size:24px;}
+[data-dpr="3"] #find .search{font-size:36px;}
+
+.flex{position: fixed;top: 0;left: 0;width:100%;height: auto; z-index: 50;}
+
+.nocallout {-webkit-touch-callout: none;} /* prevent callout */
+
+.box-163css{ width:100%; position:relative; height:4.8rem;background:#f0eff5;height: 100%;}
+
+.swipe{  width:100%; float:left;overflow: hidden; visibility: visible; position: relative; height:100%;}
+.box01_list{position:relative; -webkit-transition: left 600ms ease-out;  width:100%; left:0;float: left;}
+.li_list{width:100%;position:relative;}
+
+.news_list{ width:96%; position: relative;background: white;margin: 2% 2% 0 2%;height: 1.5rem;
+box-shadow:0 2px 2px 0 rgba(0, 0, 0, 0.14),
+           0 1px 5px 0 rgba(0, 0, 0, 0.12),
+           0 3px 1px -2px rgba(0, 0, 0, 0.2)}
+.news_list:hover{
+box-shadow:0 2px 20px 0 rgba(0, 0, 0, 0.14),
+           0 1px 50px 0 rgba(0, 0, 0, 0.12),
+           0 3px 10px -2px rgba(0, 0, 0, 0.2)}      
+.news_list span{vertical-align: middle;font-size: 16px;}
+[data-dpr="2"] .news_list span{font-size:32px;}
+[data-dpr="3"] .news_list span{font-size:48px;}
+.imgs{width: 0.8rem;height: 0.8rem;margin: 0.16667rem 0.3334rem 0.1667rem 3.2%;vertical-align: middle;}
+.news_list i{position: absolute;right: 3.2%;bottom:0.1667rem;}
+
+.page{ text-align:left; background:white; height:1rem; line-height:1rem; width:100%;display:-webkit-box;}
+.page li{-webkit-box-flex:1; font-size:15px; display:block; height:1rem;line-height:1rem; text-align:center;}
+[data-dpr="2"] .page li{font-size:30px;}
+[data-dpr="3"] .page li{font-size:45px;}
+.page li a{ color:#000; display:block; height:1rem;}
+.page a.active{border-bottom:0.06667rem solid rgb(49,123,174);}
+
+.photo{width: 47% !important;float: left;border-radius: 5px;margin:2% 0 0 2%;}
+.dele{background: rgb(49,123,174);color:#fff;text-align: center;height: 0.6667rem;line-height: 0.6667rem;
+border-radius: 5px;bottom:0;position: absolute;width: 100%;}
+
+#fileing .news_list .deletefont{background:rgb(49,123,174);color:white;width:2.1333rem;height: 100%;text-align:center;border-radius: 5px;line-height: 1.5rem;position:absolute; right:0; top:0;}
+</style>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/my-collect-tab.js"></script>
+</head>
+<body>
+<div class="box">
+	<div class="flex">
+		  <div id="top"></div>
+			  <div id="middle">
+				  <div class="md-left">
+				   <a href="my.html"><img src="images/chat/返回.svg" /></a>
+				  </div>
+			  <div class="name">我的收藏</div>
+			  </div>
+		  <div id="find">
+		    	<input type="text" class="search input_test"">
+		  </div>
+	</div>
+<div class="box-163css">
+	<ul id="pagenavi1" class="page">
+        <li><a href="#" class="active">文件</a></li>
+      	<li><a href="#">照片</a></li>
+        <li><a href="#">其他</a></li>
+    </ul>
+
+    <div id="slider1" class="swipe">
+      <ul class="box01_list">
+        <li class="li_list" id="fileing">	
+			<div class="news_list">
+				<!-- <a style="position:absolute; right:0; top:0;" class="deletefont">删除</a> -->
+				<img src="images/textline/word.svg" / class="imgs"><span>zgh</span><i>2017/8/15</i> 
+			</div>
+			<div class="news_list">
+				<!-- <a style="position:absolute; right:0; top:0;" class="deletefont">删除</a> -->
+				<img src="images/textline/word.svg" / class="imgs"><span>cc</span><i>2017/8/15</i>				 
+			</div>
+			<div class="news_list">
+				<!--  <a style="position:absolute; right:0; top:0;" class="deletefont">删除</a> -->
+				<img src="images/textline/word.svg" / class="imgs"><span>zghs</span><i>2017/8/15</i>		
+			</div>
+			<div class="news_list">
+				 <!-- <a style="position:absolute; right:0; top:0;" class="deletefont">删除</a> -->
+				<img src="images/textline/word.svg" / class="imgs"><span>zghs2</span><i>2017/8/15</i>		
+			</div>
+			<div class="news_list">
+				 <!-- <a style="position:absolute; right:0; top:0;" class="deletefont">删除</a> -->
+				<img src="images/textline/word.svg" / class="imgs"><span>zgh3</span><i>2017/8/15</i>		
+			</div>
+		</li>
+        <li class="li_list" id="photoing">
+			<div class="news_list photo">
+				<a href="#">
+					<img src="images/my-collect/指纹小.png" / class="imgs"><span>陈超指纹1</span><i>2017/8/15</i>
+				</a>
+			</div>
+			<div class="news_list photo">
+				<a href="#">
+					<img src="images/my-collect/指纹小.png" / class="imgs"><span>陈超指纹2</span><i>2017/8/15</i>
+				</a>
+			</div>
+			<div class="news_list photo">
+				<a href="#">
+					<img src="images/my-collect/指纹小.png" / class="imgs"><span>陈超指纹3</span><i>2017/8/15</i>
+				</a>
+			</div>
+			<div class="news_list photo">
+				<a href="#">
+					<img src="images/my-collect/指纹小.png" / class="imgs"><span>陈超指纹4</span><i>2017/8/15</i>
+				</a>
+			</div>
+			<div class="news_list photo">
+				<a href="#">
+					<img src="images/my-collect/指纹小.png" / class="imgs"><span>陈超指纹5</span><i>2017/8/15</i>
+				</a>
+			</div>
+			<div class="news_list photo">
+				<a href="#">
+					<img src="images/my-collect/指纹小.png" / class="imgs"><span>陈超指纹6</span><i>2017/8/15</i>
+				</a>
+			</div>
+			<div class="news_list photo">
+				<a href="#">
+					<img src="images/my-collect/指纹小.png" / class="imgs"><span>陈超指纹7</span><i>2017/8/15</i>
+				</a>
+			</div>
+		</li>
+		<li class="li_list" id="outself">
+			<div class="news_list">
+			33333333333333333
+			</div>
+		</li>
+      </ul>
+    </div>
+</div>
+</div>
+<script type="text/javascript">
+for(n=1;n<2;n++){
+	var page='pagenavi'+n;
+	var mslide='slider'+n;
+	var mtitle='emtitle'+n;
+	arrdiv = 'arrdiv' + n;
+	var as=document.getElementById(page).getElementsByTagName('a');
+	var tt=new TouchSlider({id:mslide,'auto':'-1',fx:'ease-out',direction:'left',speed:600,timeout:5000,'before':function(index){
+		var as=document.getElementById(this.page).getElementsByTagName('a');
+		as[this.p].className='';
+		as[index].className='active';
+		this.p=index;
+		var txt=as[index].innerText;
+		var txturl=as[index].getAttribute('href');		
+		var turl=txturl.split('#');
+	}});
+	tt.page = page;
+	tt.p = 0;
+	for(var i=0;i<as.length;i++){
+		(function(){
+			var j=i;
+			as[j].tt = tt;
+			as[j].onclick=function(){
+				this.tt.slide(j);
+				return false;
+			}
+		})();
+	}
+}
+</script>
+<script>
+//删除文件-------------------------------------------------
+var fileing = document.getElementById('fileing');
+var del2 = fileing.getElementsByTagName('div');
+	for(var i = 0;i<del2.length;i++){  
+        del2[i].addEventListener('touchstart',remove2,false);  
+        del2[i].addEventListener('touchend', function(event){clearTimeout(timeout)}, false); 
+    } 
+ function remove2(e) {
+ 	var that = this;
+    timeout = setTimeout(function(e){
+     	that.style.background = '#eee';
+     	var g = document.createElement('p');
+			g.innerHTML = '删除';
+			g.className = 'deletefont';
+			that.appendChild(g);
+			g.addEventListener('click',remo2);
+	     	document.onclick = function(e) {
+	     		e.stopPropagation()　　　　　　	     		
+	     		that.style.background = 'white'
+	     		g.style.display = 'none'
+  			}
+        }, 800);
+    }
+function remo2(){
+	this.parentNode.parentNode.removeChild(this.parentNode);
+}
+
+
+//删除照片-----------------------------------------
+	var photoing = document.getElementById('photoing');
+	var del = photoing.getElementsByTagName('div');
+	for(var i=0;i<del.length;i++){
+		del[i].addEventListener('touchstart',remove1,false);
+		del[i].addEventListener('touchend', function(event){clearTimeout(timeout)}, false);
+	}
+	function remove1(){
+		var that = this;
+		timeout = setTimeout(function(e){
+			that.style.background = '#eee';  　		
+			var z = document.createElement('p');
+			z.innerHTML = '删除';
+			z.className = 'dele';
+			that.appendChild(z);
+			z.addEventListener('click',remo);
+			document.onclick = function(e) {
+	     		e.stopPropagation()
+	     		that.style.background = 'white'　　　　　
+	     		z.style.display = 'none'
+  			}
+	}, 800);  
+}
+function remo(){
+	this.parentNode.parentNode.removeChild(this.parentNode);
+}
+//-------------------------------------------------------------
+ 
+</script>
+
+</body>
+</html>

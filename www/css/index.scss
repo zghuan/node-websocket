@@ -1,0 +1,55 @@
+ul
+{
+	li
+	{
+		a
+		{
+			color:red;
+		}
+	}
+}
+$pk:green;
+.zgh{
+	color:$pk;
+}
+@mixin ppp($zgh) {
+    -webkit-box-sizing:$zgh;     
+       -moz-box-sizing:$zgh;
+            box-sizing:$zgh;
+}
+.box-border{
+    border:1px solid #ccc;
+    @include ppp(border-box);
+}
+
+body{padding:0;}
+@import 'zgh';
+body{color:red;}
+
+.box{width:100%;}
+
+.zgh1[value="main"]{
+	float:left;
+	width:600px/1200px*100%
+}
+img[role='aaa']{
+	float:right;
+	width:500/100*100+px
+}
+
+/* This comment is
+ * several lines long.
+ * since it uses the CSS comment syntax,
+ * it will appear in the CSS output. */
+body { color: black; }
+
+// These comments are only one line long each.
+// They won't appear in the CSS output,
+// since they use the single-line comment syntax.
+a { color: green; }
+
+p {
+  $font-size: 12px;
+  $line-height: 30px;
+  font: #{$font-size}/#{$line-height};
+}

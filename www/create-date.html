@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"> 
+<meta content="yes" name="apple-mobile-web-app-capable"> 
+<meta content="yes" name="apple-touch-fullscreen"> 
+<meta content="telephone=no,email=no" name="format-detection">
+<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+<script src="js/flexible.js" type="text/javascript"></script> 
+
+  <title>create-date</title>
+
+
+<style type="text/css">
+*{padding: 0;margin:0; box-sizing: border-box; max-height: 100000px; box-sizing: border-box;}
+body{margin: 0;padding: 0;font-family: "Microsoft","微软雅黑";overflow: hidden;}
+html,body{margin: 0;padding: 0; width: 100%;height: 100%;}
+a{text-decoration: none;}
+.box{min-width: 100%;position: relative; font-size: 12px;top: 1.7067rem;}
+[data-dpr="2"] .box{font-size:24px;}
+[data-dpr="3"] .box{font-size:36px;}
+#top{ height:0.53333rem;background: rgb(49,123,174);}
+#middle{ height: 1.173333rem;background: rgb(66,148,214);position: relative;}
+#middle .name{ text-align: center;line-height: 1.173333rem;color: white;font-size: 16px;}
+[data-dpr="2"] #middle .name{font-size:32px;}
+[data-dpr="3"] #middle .name{font-size:48px;}
+#middle .md-rl{ width: 0.6667rem;height:0.6667rem;position: absolute;top: 0.2533333rem; font-size: 14px;
+display: block; background: rgb(66,148,214); text-align: center;line-height: 0.6667rem; color: white;
+cursor: pointer;}
+[data-dpr="2"] #middle .md-rl{ font-size: 28px; }
+[data-dpr="3"] #middle .md-rl{ font-size: 42px; }
+#middle .right{ right: 0.32rem; }
+#middle .left{ left: 0.15rem; }
+#middle .Cspan{ position: absolute; left:0.818rem; height: 1.17333rem;  line-height: 1.173333rem; font-size: 14px; color: white; }
+[data-dpr="2"] #middle .Cspan{ font-size: 28px; }
+[data-dpr="3"] #middle .Cspan{ font-size: 42px; }
+
+img{ width:100%;height: 100%; }
+
+.flex{position: fixed;top: 0;left: 0;width:100%;height: auto; z-index: 50;}
+
+.add{ background: rgb(66,148,214); height: auto; width: 40%; position: absolute;top: 0.15rem; right: 0.32rem; z-index: 50; -moz-box-shadow:2px 2px 5px #000;
+            -webkit-box-shadow:2px 2px 5px #000;
+                    box-shadow:2px 2px 5px #000; display: none; }
+.add p{ height: 1rem; line-height: 1rem; font-size: 14px; color: white; padding-left: 5% ;  }
+[data-dpr="2"] .add p{ font-size: 28px; }
+[data-dpr="3"] .add p{ font-size: 42px; }
+.add hr{width: 90%;height:1px;margin-top:7px;margin:0;border:0;color:white;
+  background-color:white;margin:auto;}
+
+ .hr{width: 96.8%;height:1px;margin-top:7px;border:0;color:#888888;
+  background-color:#888888;margin:0;-webkit-margin-start:3.2%;}
+
+
+.list{ height: 1.4rem; }
+.wimg{ width: 1.06667rem; height: 1.06667rem; margin: 0.166665rem  0.24rem 0.166665rem 3.2%; float: left; }
+.word{ height: 1.4rem; width: 81%; line-height: 1.4rem;  float: left; font-size: 12px; }
+[data-dpr="2"] .word{ font-size: 24px; }
+[data-dpr="3"] .word{ font-size: 36px; }
+
+.list-A{ height: 1.13333rem; }
+.Aimg{ width:0.4rem; height: 0.4rem; margin: 0.36667rem 0.46667rem 0.36667rem 3.2%; float: left; }
+.Aword{ height: 1.13333rem; line-height:normal；width: 81%;  float: left; font-size: 14px; outline:none;border:0;}
+[data-dpr="2"] .Aword{ font-size: 28px; }
+[data-dpr="3"] .Aword{ font-size: 42px; }
+
+.bot{width: 100%;height: 0.6rem;background: #f0eff5;}
+.textarea textarea{width: 99%;height: 20rem; outline: none;font-size: 14px;padding: 20px;border:0;}
+[data-dpr="2"] .textarea textarea {font-size: 28px; }
+[data-dpr="3"] .textarea textarea{ font-size: 42px; }
+</style>
+</head>
+<body  onload="showTime()">
+<div class="box">
+  <div class="flex">
+      <div id="top"></div>
+        <div id="middle"> 
+        <a href="work-daily.html"><div class="md-rl left"><img src="images/chat/返回.svg" /></div></a> 
+        <span class="Cspan"></span>
+        <div class="name">新建日志(<span id="date"></span>)</div>
+        <div class="md-rl right" id="rimg"><img src="images/imgC/省略号.svg" /></div>
+        </div>
+  </div>
+        
+<div class="add" id="add">
+  <p>保存</p>
+  <hr />
+  <p>删除</p>
+  <hr />
+  <p>提交</p>
+</div>
+
+  <ul>
+    <li class="list-A">
+      <div class="Aimg"><img src="images/imgC/标签.svg" /></div>
+      <input type="textarea" class="Aword" placeholder="输入标题" id="input">
+    </li> 
+  </ul> 
+
+<div class="bot"></div>
+
+<div class="textarea">
+	<textarea placeholder="请输入内容..."></textarea >
+</div>
+</div>  
+ 
+<script type="text/javascript">
+  var add = document.getElementById("add"),
+      rimg = document.getElementById("rimg");
+      rimg.onclick=function(){
+      if(add.style.display=="block"){          
+            add.style.display="none";
+           }
+           else{           
+            add.style.display="block";
+           }
+      }
+</script>
+ <script>
+//显示日期
+var now = new Date();
+function showTime()
+{
+
+var month=now.getMonth()+1;
+var day=now.getDate();
+
+document.all.date.innerHTML=""+month+"."+day;
+}
+</script>
+</body>
+</html>

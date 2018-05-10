@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"> 
+<meta content="yes" name="apple-mobile-web-app-capable"> 
+<meta content="yes" name="apple-touch-fullscreen"> 
+<meta content="telephone=no,email=no" name="format-detection"> 
+<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+<script src="js/flexible.js" type="text/javascript"></script>
+  <title>group_chat</title>
+
+<style type="text/css">
+*{padding: 0;margin:0; box-sizing: border-box; max-height: 100000px; box-sizing: border-box;}
+body{margin: 0;padding: 0;font-family: "Microsoft","微软雅黑";box-sizing: border-box;}
+html,div,img{margin: 0;padding: 0;}
+a,ul,li,span,p{ display: block; }
+a{text-decoration: none; }
+ul li{ list-style: none; }
+.box{min-width: 100%;position: relative; font-size: 12px;}
+[data-dpr="2"] .box{font-size:24px;}
+[data-dpr="3"] .box{font-size:36px;}
+#top{ height:0.53333rem;background: rgb(49,123,174);}
+#middle{ height: 1.173333rem;background: rgb(66,148,214);position: relative;}
+#middle .name{ text-align: center;line-height: 1.173333rem;color: white;font-size: 16px;font-family: "Microsoft","微软雅黑";}
+[data-dpr="2"] #middle .name{font-size:32px;}
+[data-dpr="3"] #middle .name{font-size:48px;}
+#middle .md-right{ width: 0.6667rem;height:0.6667rem;position: absolute;top: 0.253333rem;right: 0.32rem;}
+#middle .md-left{ width: 0.6667rem;height:0.6667rem;position: absolute;top: 0.253333rem;left: 0.15rem;}
+img{ width:100%;height: 100%; }
+
+
+ #sending span{font-family: "Microsoft","微软雅黑" ;color: green;}
+ #cat span:hover{color: orange;}
+[data-dpr="2"] #cat{font-size:30px;}
+[data-dpr="3"] #cat{font-size:45px;}
+ 
+
+.bottom {position: fixed;z-index: 50;bottom: 0;left:0;width: 100%;height: 1.306667rem;
+  display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display:flex;
+  border-top: 0.01rem solid #ccc;background:#e0e0e0; }
+
+.bottom-lr a{ width: 1rem;height:1rem; margin-top: 0.16rem; text-decoration: none;}
+.bottom-lr .right{ margin-right: 0.32rem; }
+.bottom-lr .left{ margin-left: 0.32rem;}
+#sended{ width: 1.2rem;height: 1rem; border:1px solid rgba(66,148,214,0.8);display: none;background: rgba(66,148,214,0.7); font-size: 16px; color: white; border-radius: 0.2rem;}
+[data-dpr="2"] #sended{font-size:32px;}
+[data-dpr="3"] #sended{font-size:48px;}
+
+.bottom .send{ -webkit-flex: 1; -ms-flex: 1; flex: 1;  display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display:flex;justify-content: center;box-pack:center;}
+.send .send-text{ width:90%; height: 1.173333rem; border-color: #2196f3;font-size:16px ;
+  font-family:"Microsoft","微软雅黑"; outline: none; align-self: center;display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display:flex;text-indent: 0.2rem;}
+[data-dpr="2"] .send .send-text{font-size:32px;}
+[data-dpr="3"] .send .send-text{font-size:48px;}
+#bottom-top{ height: 5.2rem; width: 100%; border: 0.01rem solid #bcbcbc;background: #e3e3e3;  position: fixed;
+  bottom: 1.3067rem;box-sizing: border-box; z-index: 50;left: 0;display: none;}
+#bottom-top .photo{ width:1.52rem; height: 2.1rem; float: left; margin:0.25rem 0.48rem;}
+#bottom-top li{ width:1.52rem; height: 1.52rem;  }
+#bottom-top span{ height:0.373333rem;font: 10px ;color: #4e4e4e; font-weight: bold;margin-top: 0.2rem; text-align: center; overflow: hidden;}
+[data-dpr="2"] #bottom-top span{font-size: 20px;}
+[data-dpr="3"] #bottom-top span{ font-size: 30px; }
+
+#testBtn{width: 90%;height: 1.173333rem;border-radius:0.586667rem;line-height:1.173333rem;font-size:16px ;color:#4294d6;outline:none;}
+[data-dpr="2"] #testBtn{font-size:32px;}
+[data-dpr="3"] #testBtn{font-size:48px;}
+</style>
+</head>
+<body>
+<div class="box">
+    <div id="top"></div>
+    <div id="middle">
+        <div class="md-left">
+            <img src="images/group_frame/返回.svg" />
+        </div>
+        <div class="md-right">
+            <img src="images/group_frame/群设置按钮.svg" />
+        </div>
+    <div class="name">群名(0)</div>
+    </div>
+     <div id="chat"></div>
+</div>  
+
+<div id="bottom-top">
+  <ul>
+    <a class="photo" href="#"><li><img src="images/function/照片.svg" /></li><span>照片照片</span></a>
+    <a class="photo" href="#"><li><img src="images/function/文件.svg" /></li><span>文件传输</span></a>
+    <a class="photo" href="#"><li><img src="images/function/視頻.svg" /></li><span>视频聊天</span></a>
+    <a class="photo" href="#"><li><img src="images/function/拍照.svg" /></li><span>拍摄</span></a>
+    <a class="photo" href="#"><li><img src="images/function/截图.svg" /></li><span>截图</span></a>
+
+  </ul>
+</div>
+
+<div class="bottom">
+    <div class="bottom-lr">
+        <a class="left"><img src="images/chat/麦克风.svg" /></a>
+    </div>
+    <div class="send">
+        <input type="text" name="send-text" class="send-text" id="send-text1" placeholder="请输入内容" style='border-left:0px;border-top:0px;border-right:0px;' oninput="zgh()">
+    </div>
+    <div class="bottom-lr">
+        <a class="right">
+          <img src="images/chat/function.svg" id="img1" />
+          <button id="sended" >发送</button>
+        </a>
+    </div> 
+</div>
+
+<script>
+
+//解决ios第三方输入法挡住底部input文本框
+var interval = setInterval(function() {
+    document.body.scrollTop = document.body.scrollHeight
+}, 100);
+
+//菜单栏滑动部分
+ $("#img1").click(function(){
+                    $("#bottom-top").slideToggle("fast");
+                              }); 
+
+//功能键部分
+var text1 = document.getElementById("send-text1"); //获取文本框
+var button1 = document.getElementById('sended');  //获取发送按钮
+var img1 = document.getElementById('img1'); //获取功能键
+
+      function zgh(){
+         if(text1.value !=""){ //如果文本框值不为空
+           button1.style.display = "block"; //发送按钮显示
+          img1.style.display = "none";//功能键隐藏
+
+          }else{
+             button1.style.display = "none";
+             img1.style.display ="block";
+          }      
+      }
+//按钮语音部分
+$(".left img").click(function(){
+	if($("#send-text1").is(":visible"))
+	{
+		$("#send-text1").hide();
+			var btn1 = $("<input type='button' id='testBtn' value='按住&nbsp&nbsp说话'>");
+            	$(".send").append(btn1);    		
+	}	
+	else{	
+		$("#testBtn").remove();
+		$("#send-text1").show();	
+	}
+});
+
+
+  // var textB =document.getElementById("testBtn")
+
+
+</script>

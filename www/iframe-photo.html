@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Camera API</title>
+<link rel="stylesheet" href="css/base.css" type="text/css" media="screen">
+</head>
+<body>
+<div class="container">
+<h1>Camera API</h1>
+<section class="main-content">
+
+<p>
+<input type="file" id="take-picture" accept="image/*">
+</p>
+<h2>Preview:</h2>
+<p>
+<img src="about:blank" alt="" id="show-picture">
+</p>
+<p id="erro-r"></p>
+</section>
+
+</div>
+<script src="js/base.js"></script>
+
+</body>
+<script type="text/javascript">
+(function () {
+var takePicture = document.querySelecto-r("#take-picture"),
+showPicture = document.querySelecto-r("#show-picture");
+if (takePicture && showPicture) {
+// Set events
+takePicture.onchange = function (event) {
+// Get a reference to the taken picture o-r chosen file
+var files = event.target.files,
+file;
+if (files && files.length > 0) {
+file = files[0];
+try {
+// Get window.URL object
+var URL = window.URL || window.webkitURL;
+// Create ObjectURL
+var imgURL = URL.createObjectURL(file);
+// Set img src to ObjectURL
+showPicture.src = imgURL;
+// Revoke ObjectURL
+URL.revokeObjectURL(imgURL);
+}
+catch (e) {
+try {
+// Fallback if createObjectURL is not suppo-rted
+var fileReader = new FileReader();
+fileReader.onload = function (event) {
+showPicture.src = event.target.result;
+};
+fileReader.readAsDataURL(file);
+}
+catch (e) {
+//
+var erro-r = document.querySelecto-r("#erro-r");
+if (erro-r) {
+erro-r.innerHTML = "Neither createObjectURL o-r FileReader are suppo-rted";
+}
+}
+}
+}
+};
+}
+})();
+</script>
+</html>
